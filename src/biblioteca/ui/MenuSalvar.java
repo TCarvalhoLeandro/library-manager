@@ -26,16 +26,17 @@ public class MenuSalvar {
 		try {
 			while(true) {//O while(true) mantém o usuário dentro do menu de salvar e carregar.
 				System.out.println("=".repeat(15) + " SALVAR E CARREGAR " + "=".repeat(15));
-				System.out.println("0 - Voltar");
+				
 				System.out.println("1 - Salvar ");
 				System.out.println("2 - Carregar ");
+				System.out.println("0 - Voltar");
 				System.out.println();
 				System.out.print("Digite a opcao desejada: ");
 				int opcao4 = Integer.parseInt(br.readLine());
 				System.out.println();
 				switch (opcao4) {// switch interno (menu salvar e carregar)
 				case 1:
-					/*salvar todas as listas*/
+					/*salvar todas as listas*/ //ESTUDAR.....
 					  try {
 						  	if(Livro.getContador() > 0) {// só vai escrever no arquivo se for instanciado
 						  		CSVUtil.salvarCSV(biblioteca.getLivros(), "livros.csv");

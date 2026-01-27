@@ -13,11 +13,11 @@ import biblioteca.ui.MenuSalvar;
 /*FALTA FAZER
 
 
- * validar cpf
- * validar email
- * calcular dias atrasados
- * calcular a multa por atraso
- * criar um historico*/
+ * criar uma classe de validacao pra validar cpf e email
+ * criar metodo para calcular dias atrasados
+ * criar metodo para calcular a multa por atraso
+ * criar metodo para criar um historico
+ * adicionar no menu de gerenciamneto de livros, leitores e emprestimos a opcao de salvar*/
 
 public class Program {
 
@@ -31,8 +31,11 @@ public class Program {
 		// 2. Instancia todos os menus, INJETANDO a mesma instância da Biblioteca
 		// Menu para gerir os Livros
 		MenuLivros menuLivros = new MenuLivros(bibliotecaPrincipal);
+		// Menu para gerir os Leitores
 		MenuLeitor menuLeitor = new MenuLeitor(bibliotecaPrincipal);
+		// Menu para gerir os Emprestimos
 		MenuEmprestimo menuEmprestimo = new MenuEmprestimo(bibliotecaPrincipal);
+		// Menu para gerir os salvamentos
 		MenuSalvar menuSalvar = new MenuSalvar(bibliotecaPrincipal);
 
 		/* Os arquivos são carregados e só podem ser modificados atraves dos menus */
@@ -41,12 +44,13 @@ public class Program {
 		/* Loop de interação com o usuario */
 		while (true) {
 			try {
-				System.out.println("=".repeat(15) + " BIBLIOTECA " + "=".repeat(15));
-				System.out.println("0 - Sair");
+				System.out.println("=".repeat(15) + " BIBLIOTECA - GERENCIAMENTO DE DADOS " + "=".repeat(15));
+				
 				System.out.println("1 - Livros");
 				System.out.println("2 - Leitores");
 				System.out.println("3 - Emprestimos e Devolucoes");
 				System.out.println("4 - Salvar e Carregar");
+				System.out.println("0 - Sair");
 				System.out.println();
 				System.out.print("Digite a opção desejada: ");
 				

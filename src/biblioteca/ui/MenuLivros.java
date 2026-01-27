@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import biblioteca.core.Biblioteca;
 import biblioteca.domainException.DadosException;
 import biblioteca.entities.Livro;
+import biblioteca.util.CSVUtil;
 
 public class MenuLivros {
 
@@ -25,11 +26,13 @@ public class MenuLivros {
 		try {
 			while (true) {// O while(true) mantém o usuário dentro do menu de livros.
 				System.out.println("=".repeat(15) + " LIVROS " + "=".repeat(15));
-				System.out.println("0 - Voltar");
+				
 				System.out.println("1 - Cadastrar ");
 				System.out.println("2 - Listar");
 				System.out.println("3 - Remover");
 				System.out.println("4 - Buscar");
+				System.out.println("5 - Salvar");
+				System.out.println("0 - Voltar");
 				
 				System.out.println();
 				System.out.print("Digite a opcao desejada: ");
@@ -86,6 +89,17 @@ public class MenuLivros {
 					int busca = Integer.parseInt(br.readLine());
 	
 					System.out.println(biblioteca.buscarLivro(busca));
+					break;
+				case 5: 
+					try {
+						if(Livro.getContador() > 0) {// só vai escrever no arquivo se for instanciado
+					  		CSVUtil.salvarCSV(biblioteca.getLivros(), "livros.csv");
+					  		Livro.setContador(0);// salvou no arquivo, zera o contador
+					  	}
+					}
+					catch(IOException e) {
+						 System.out.println("Erro ao salvar: " + e.getMessage());
+					}
 					break;
 				default:
 					if (opcao1 != 0)

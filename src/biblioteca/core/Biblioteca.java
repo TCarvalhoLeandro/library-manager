@@ -284,7 +284,7 @@ public class Biblioteca {
 	
 	            // sobrescreve o arquivo com a lista atualizada
 	            try {
-	                CSVUtil.salvarCSV(emprestimos, "/home/leandro/eclipse-workspace/Biblioteca/emprestimos.csv");
+	                CSVUtil.salvarCSV(emprestimos, "/home/leandro/Workspaces/Workspace Java Projetos Pessoais/Biblioteca/emprestimos.csv");
 	            } catch (IOException e) {
 	                System.out.println("Erro ao atualizar arquivo: " + e.getMessage());
 	            }
@@ -304,9 +304,9 @@ public class Biblioteca {
 	public void carregarArquivo() {
 		try {
 			//Atualizo a biblioteca com os arquivos .csv
-	        setLivros(CSVUtil.lerLivroCSV("/home/leandro/eclipse-workspace/Biblioteca/livros.csv"));;
-	        setLeitores(CSVUtil.lerLeitorCSV("/home/leandro/eclipse-workspace/Biblioteca/leitores.csv"));
-	        setEmprestimos(CSVUtil.lerEmprestimoCSV("/home/leandro/eclipse-workspace/Biblioteca/emprestimos.csv", leitores, livros));
+	        setLivros(CSVUtil.lerLivroCSV("/home/leandro/Workspaces/Workspace Java Projetos Pessoais/Biblioteca/livros.csv"));
+	        setLeitores(CSVUtil.lerLeitorCSV("/home/leandro/Workspaces/Workspace Java Projetos Pessoais/Biblioteca/leitores.csv"));
+	        setEmprestimos(CSVUtil.lerEmprestimoCSV("/home/leandro/Workspaces/Workspace Java Projetos Pessoais/Biblioteca/emprestimos.csv", leitores, livros));
 	        System.out.println("Arquivos carregados com sucesso!");
 	        
 	    } catch (IOException e) {

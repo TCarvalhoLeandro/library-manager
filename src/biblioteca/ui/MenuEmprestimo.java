@@ -29,12 +29,13 @@ public class MenuEmprestimo {
 		try {
 			while(true) {
 				System.out.println("=".repeat(15) + " EMPRESTIMOS E DEVOLUCOES " + "=".repeat(15));
-				System.out.println("0 - Voltar");
+				
 				System.out.println("1 - Emprestimo ");
 				System.out.println("2 - Listar emprestimo por leitor");
 				System.out.println("3 - Listar emprestimo por livro ");
 				System.out.println("4 - Lista todos os emprestimos ");
 				System.out.println("5 - Devolucao ");
+				System.out.println("0 - Voltar");
 				System.out.println();
 				System.out.print("Digite a opcao desejada: ");
 				int opcao3 = Integer.parseInt(br.readLine());

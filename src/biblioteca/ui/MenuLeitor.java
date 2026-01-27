@@ -22,11 +22,12 @@ public class MenuLeitor {
 		try {
 			while (true) {// O while(true) mantém o usuário dentro do menu de leitores.
 				System.out.println("=".repeat(15) + " LEITORES " + "=".repeat(15));
-				System.out.println("0 - Voltar");
+				
 				System.out.println("1 - Cadastrar ");
 				System.out.println("2 - Listar ");
 				System.out.println("3 - Remover ");
 				System.out.println("4 - Buscar ");
+				System.out.println("0 - Voltar");
 				System.out.println();
 				System.out.print("Digite a opcao desejada: ");
 				int opcao2 = Integer.parseInt(br.readLine());
