@@ -1,0 +1,109 @@
+package dao.impl;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import biblioteca.domainException.DadosException;
+import biblioteca.entities.Livro;
+import dao.LivroDAO;
+
+public class LivroCSVDAO implements LivroDAO {
+
+	private String caminhoArquivo;
+
+	public LivroCSVDAO(String caminhoArquivo) {
+		this.caminhoArquivo = caminhoArquivo;
+	}
+
+	// INSERE LIVRO
+	@Override
+	public void insert(Livro livro) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
+			bw.write(livro.toCSV()); // escreve os dados do livro no arquivo
+			bw.newLine();// pula para a proxima linha
+		} 
+		catch (IOException e) {
+			throw new DadosException("Erro ao salvar o livro. " + e.getMessage());
+		}
+	}
+
+	// BUSCA POR ID
+	@Override
+	public Livro find(int id) {
+		List<Livro> livros = this.findAll(); // carrega todos os livros
+		for (int i = 0; i < livros.size(); i++) {
+			if (livros.get(i).getId() == id) {
+				return livros.get(i);
+			}
+		}
+		throw new DadosException("Livro não encontrado.");
+	}
+
+	//BUSCA TODOS LIVROS NO ARQUIVO E CONVERTE EM OBJETO LIVRO
+	@Override
+	public List<Livro> findAll() {
+		List<Livro> livros = new ArrayList<Livro>();// o arquivo pode ter varios livros entao criamos uma lista
+		try (BufferedReader br = new BufferedReader(new FileReader(this.caminhoArquivo))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				String[] fields = line.split(";");
+				int id = Integer.parseInt(fields[0]);
+				String nome = fields[1];
+				String autor = fields[2];
+				int ano = Integer.parseInt(fields[3]);
+				boolean disponivel = Boolean.parseBoolean(fields[4]);
+
+				livros.add(new Livro(id, nome, autor, ano, disponivel));
+			}
+		} 
+		catch (IOException e) {
+			throw new DadosException("Erro ao carregar livros do arquivo.");
+		}
+		return livros;
+	}
+
+	// ATUALIZA LIVRO 
+	@Override
+	public void update(Livro livro) {
+		List<Livro> livros = this.findAll(); // carrega todos os livros
+		for (int i = 0; i < livros.size(); i++) {
+			if (livros.get(i).getId() == livro.getId()) {
+				livros.set(i, livro); // Substitui o livro antigo pelo novo na posição 'i'
+				break; // Já atualizamos, podemos parar de procurar!
+			}
+		}
+		rewriteFiles(livros);
+	}
+
+	// REMOVE LIVRO
+	@Override
+	public void remove(int id) {
+		List<Livro> livros = this.findAll(); // carrega todos os livros
+		for (int i = 0; i < livros.size(); i++) {
+			if (livros.get(i).getId() == id) {
+				livros.remove(i);
+				break;
+			}
+		}
+		rewriteFiles(livros);
+	}
+
+	// REESCREVE DADOS NO ARQUIVO
+	private void rewriteFiles(List<Livro> livros) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo))) {
+			for (Livro livro : livros) {
+				bw.write(livro.toCSV());
+				bw.newLine();
+			}
+		} 
+		catch (IOException e) {
+			throw new DadosException("Erro ao atualizar a lista." + e.getMessage());
+		}
+	}
+
+}
