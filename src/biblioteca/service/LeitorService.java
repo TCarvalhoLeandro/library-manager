@@ -1,0 +1,54 @@
+package biblioteca.service;
+
+import java.util.List;
+
+import biblioteca.entities.Emprestimo;
+import biblioteca.entities.Leitor;
+import dao.EmprestimoDAO;
+import dao.LeitorDAO;
+
+public class LeitorService {
+
+	private LeitorDAO leitorDao;
+	private EmprestimoDAO emprestimoDao;
+
+	public int salvarLeitor(Leitor novoLeitor) {
+		List<Leitor> leitores = leitorDao.findAll();
+		//validacao de regra de negocio, verifica se o cpf já existe
+		for (Leitor leitor : leitores) {
+			if (novoLeitor.getCpf().equals(leitor.getCpf())) {
+				throw new RuntimeException("Atenção, você já possui uma conta no nosso sistema!");
+			}
+		}
+		// atribui o id automaticamente, autoincremento
+		if (leitores.size() == 0) {
+			novoLeitor.setId(1);
+		} else {
+			Leitor ultimoLeitor = leitores.get(leitores.size() - 1);
+			novoLeitor.setId(ultimoLeitor.getId() + 1);
+		}
+		// persistencia
+		leitorDao.insert(novoLeitor);
+		return novoLeitor.getId();
+	}
+
+	
+	public void deletarLeitor(int idLeitor) {
+		List<Emprestimo> historicoEmprestimo = emprestimoDao.findByIdLeitor(idLeitor);
+		for (Emprestimo emprestimo : historicoEmprestimo) {
+			if (!emprestimo.isDevolvido()) {
+				throw new RuntimeException("Leitor com pendências!");
+			}
+		}
+		leitorDao.remove(idLeitor);
+	}
+}
+
+
+
+
+
+
+
+
+

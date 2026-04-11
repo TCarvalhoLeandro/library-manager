@@ -9,7 +9,7 @@ public class EmprestimoResources {
 	private EmprestimoService emprestimoService;
 	Scanner sc = new Scanner(System.in);
 
-	public void exibirTelaEmprestimo() {
+	public void telaEmprestimo() {
 
 		int opcao = 0;
 		while (opcao != 0) {

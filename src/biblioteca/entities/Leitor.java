@@ -16,9 +16,17 @@ public class Leitor implements Salvar{// implemetando a interface Salvar
 		contador++;
 	}
 
-	//construtor com todos os argumentos
+	
+	public Leitor(String nome, String cpf, String email) {
+		this.id = 0;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		contador++;
+	}
+	
 	public Leitor(int id, String nome, String cpf, String email) {
-		this.id = id;
+		this.id = 0;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
