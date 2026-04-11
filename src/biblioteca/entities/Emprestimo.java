@@ -6,14 +6,14 @@ import biblioteca.service.Salvar;
 
 public class Emprestimo implements Salvar{// implementando a interface Salvar
 	
-	private static int contador = 0;
+	private static int contador = 1;
 	
 	private int id;// id do emprestimo
 	private Leitor leitor;
 	private Livro livro;
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
-	private boolean status;
+	private boolean devolvido;
 	
 	//construtor padrão
 	public Emprestimo() {
@@ -25,7 +25,7 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 		this.leitor = leitor;
 		this.livro = livro;
 		this.dataEmprestimo = dataEmprestimo;
-		this.status = devolvido;
+		this.devolvido = devolvido;
 		contador++;
 	}
 
@@ -36,7 +36,7 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 		this.livro = livro;
 		this.dataEmprestimo = dataEmprestimo;
 		this.dataDevolucao = dataDevolucao;
-		this.status = devolvido;
+		this.devolvido = devolvido;
 		contador++;
 	}
 
@@ -81,11 +81,11 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 	}
 
 	public boolean isDevolvido() {
-		return status;
+		return devolvido;
 	}
 
 	public void setDevolvido(boolean devolvido) {
-		this.status = devolvido;
+		this.devolvido = devolvido;
 	}
 	
 	public void registrarDevolucao() {
@@ -120,7 +120,7 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 				  + ";" 
 				  + dataDev 
 				  + ";" 
-				  + status;
+				  + devolvido;
 	}
 	
 	/*=================================>> MELHORAR ESSA PARTE*/
@@ -136,5 +136,6 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 	public String toString() {
 		return id + " - " + leitor.getNome() + " - " + livro.getTitulo() + " - " + dataEmprestimo + " - " + dataDevolucao;
 	}
+	
 	
 }

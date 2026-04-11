@@ -10,6 +10,7 @@ public interface EmprestimoDAO {
 	Emprestimo findById(int id);
 	List<Emprestimo> findAll();
 	void update(Emprestimo emprestimo);
+	List<Emprestimo> findByIdLeitor(int id);
 	
 	
 }

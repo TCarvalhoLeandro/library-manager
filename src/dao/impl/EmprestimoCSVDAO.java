@@ -54,7 +54,7 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		throw new DadosException("Emprestimo não encontrado.");
 	}
 
-	// BUSCA TODOSEMPRESTIMOS NO ARQUIVO E CONVERTE EM OBJETO EMPRESTIMO
+	// BUSCA TODOS EMPRESTIMOS NO ARQUIVO E CONVERTE EM OBJETO EMPRESTIMO
 	@Override
 	public List<Emprestimo> findAll() {
 		List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();// o arquivo pode ter varios livros entao criamos uma lista
@@ -98,6 +98,18 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 			throw new DadosException("Erro ao carregar leitores do arquivo");
 		}
 		return emprestimos;
+	}
+	
+	// FILTRA EMPRESTIMOS POR ID DO LEITOR 
+	public List<Emprestimo> findByIdLeitor(int id){
+		List<Emprestimo> emprestimos = findAll();
+		List<Emprestimo> emprestimosById = new ArrayList<Emprestimo>();
+		for(int i = 0;i < emprestimos.size();i++) {
+			if(emprestimos.get(i).getLeitor().getId() == id) {
+				emprestimosById.add(emprestimos.get(i));
+			}
+		}
+		return emprestimosById;
 	}
 
 	// ATUALIZA EMPRESTIMO
