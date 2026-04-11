@@ -18,12 +18,12 @@ public class Biblioteca {
 	private List<Leitor> leitores = new ArrayList<Leitor>();// lista de leitores
 	private List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();// lista de emprestimos
 	
-	/*construtor padrão*/
+	
 	public Biblioteca() {
 		
 	}
 	
-	//construtor com listas usado para criar livros novos
+	
 	public Biblioteca(List<Livro> livros, List<Leitor> leitores, List<Emprestimo> emprestimos) {
 		this.livros = livros;
 		this.leitores = leitores;
@@ -255,7 +255,7 @@ public class Biblioteca {
 		return leitorEmprt;
 	}
 	
-	/*DEVOLUCAO*/ //estudarr
+	/*DEVOLUCAO*/ 
 	public void devolucao(String tituloLivro) {
 		boolean devolvido = false;
 		

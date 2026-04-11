@@ -74,7 +74,7 @@ public class Livro implements Salvar{// implemetando a interface Salvar
 		contador = cont;
 	}
 	
-	/*METODO INTERFACE PRA SALVAR EM .CSV*/
+	/*SALVAR EM .CSV*/
 	@Override
 	public String toCSV() {
 		return id + ";" 

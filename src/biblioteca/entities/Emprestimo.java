@@ -13,7 +13,7 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 	private Livro livro;
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
-	private boolean devolvido;
+	private boolean status;
 	
 	//construtor padrão
 	public Emprestimo() {
@@ -25,7 +25,7 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 		this.leitor = leitor;
 		this.livro = livro;
 		this.dataEmprestimo = dataEmprestimo;
-		this.devolvido = devolvido;
+		this.status = devolvido;
 		contador++;
 	}
 
@@ -36,7 +36,7 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 		this.livro = livro;
 		this.dataEmprestimo = dataEmprestimo;
 		this.dataDevolucao = dataDevolucao;
-		this.devolvido = devolvido;
+		this.status = devolvido;
 		contador++;
 	}
 
@@ -81,11 +81,11 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 	}
 
 	public boolean isDevolvido() {
-		return devolvido;
+		return status;
 	}
 
 	public void setDevolvido(boolean devolvido) {
-		this.devolvido = devolvido;
+		this.status = devolvido;
 	}
 	
 	public void registrarDevolucao() {
@@ -120,7 +120,7 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 				  + ";" 
 				  + dataDev 
 				  + ";" 
-				  + devolvido;
+				  + status;
 	}
 	
 	/*=================================>> MELHORAR ESSA PARTE*/
