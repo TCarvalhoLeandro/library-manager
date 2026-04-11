@@ -21,7 +21,7 @@ public class LeitorCSVDAO implements LeitorDAO {
 		this.caminhoArquivo = caminhoArquivo;
 	}
 
-	// INSERI LEITOR
+	// INSERE LEITOR
 	@Override
 	public void insert(Leitor leitor) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {

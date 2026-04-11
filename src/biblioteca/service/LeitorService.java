@@ -14,7 +14,7 @@ public class LeitorService {
 
 	public int salvarLeitor(Leitor novoLeitor) {
 		List<Leitor> leitores = leitorDao.findAll();
-		//validacao de regra de negocio, verifica se o cpf já existe
+		// validacao de regra de negocio, verifica se o cpf já existe
 		for (Leitor leitor : leitores) {
 			if (novoLeitor.getCpf().equals(leitor.getCpf())) {
 				throw new RuntimeException("Atenção, você já possui uma conta no nosso sistema!");
@@ -32,8 +32,8 @@ public class LeitorService {
 		return novoLeitor.getId();
 	}
 
-	
 	public void deletarLeitor(int idLeitor) {
+		// verifica se tem emprestimo penedente
 		List<Emprestimo> historicoEmprestimo = emprestimoDao.findByIdLeitor(idLeitor);
 		for (Emprestimo emprestimo : historicoEmprestimo) {
 			if (!emprestimo.isDevolvido()) {
@@ -43,12 +43,3 @@ public class LeitorService {
 		leitorDao.remove(idLeitor);
 	}
 }
-
-
-
-
-
-
-
-
-

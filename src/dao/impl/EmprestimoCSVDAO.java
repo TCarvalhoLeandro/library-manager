@@ -23,8 +23,6 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 	private LeitorDAO leitorDao;
 	private LivroDAO livroDao;
 
-
-	
 	public EmprestimoCSVDAO(String caminhoArquivo, LeitorDAO leitorDao, LivroDAO livroDao) {
 		this.caminhoArquivo = caminhoArquivo;
 		this.leitorDao = leitorDao;
@@ -57,40 +55,39 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 	// BUSCA TODOS EMPRESTIMOS NO ARQUIVO E CONVERTE EM OBJETO EMPRESTIMO
 	@Override
 	public List<Emprestimo> findAll() {
-		List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();// o arquivo pode ter varios livros entao criamos uma lista
+		List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();// o arquivo pode ter varios livros entao criamos uma
+																	// lista
 		try (BufferedReader br = new BufferedReader(new FileReader(this.caminhoArquivo))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				
+
 				String[] fields = line.split(";");
-				
+
 				int id = Integer.parseInt(fields[0]);
-				
+
 				int leitorId = Integer.parseInt(fields[1]);
-				
+
 				int livroId = Integer.parseInt(fields[2]);
-				
+
 				LocalDate dataEmprestimo = LocalDate.parse(fields[3]);
-				
+
 				LocalDate dataDevolucao;
-				if(!fields[4].isEmpty()) {
+				if (!fields[4].isEmpty()) {
 					dataDevolucao = LocalDate.parse(fields[4]);
-				}
-				else { 
+				} else {
 					dataDevolucao = null;
 				}
-				
+
 				boolean status = Boolean.parseBoolean(fields[5]);
-				
+
 				// instancia leitor e livro a partir do id
 				try {
 					Leitor leitor = leitorDao.find(leitorId);
-					
+
 					Livro livro = livroDao.find(livroId);
-					
-					emprestimos.add(new Emprestimo(id, leitor, livro, dataEmprestimo, dataDevolucao,  status));
-				}
-				catch(Exception e) {
+
+					emprestimos.add(new Emprestimo(id, leitor, livro, dataEmprestimo, dataDevolucao, status));
+				} catch (Exception e) {
 					throw new DadosException("Erro ao processar linha de empréstimo!");
 				}
 			}
@@ -99,13 +96,25 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		}
 		return emprestimos;
 	}
-	
-	// FILTRA EMPRESTIMOS POR ID DO LEITOR 
-	public List<Emprestimo> findByIdLeitor(int id){
+
+	// FILTRA EMPRESTIMOS POR ID DO LEITOR
+	public List<Emprestimo> findByIdLeitor(int id) {
 		List<Emprestimo> emprestimos = findAll();
 		List<Emprestimo> emprestimosById = new ArrayList<Emprestimo>();
-		for(int i = 0;i < emprestimos.size();i++) {
-			if(emprestimos.get(i).getLeitor().getId() == id) {
+		for (int i = 0; i < emprestimos.size(); i++) {
+			if (emprestimos.get(i).getLeitor().getId() == id) {
+				emprestimosById.add(emprestimos.get(i));
+			}
+		}
+		return emprestimosById;
+	}
+
+	// FILTRA EMPRESTIMOS POR ID DO LEITOR
+	public List<Emprestimo> findByIdLivro(int id) {
+		List<Emprestimo> emprestimos = findAll();
+		List<Emprestimo> emprestimosById = new ArrayList<Emprestimo>();
+		for (int i = 0; i < emprestimos.size(); i++) {
+			if (emprestimos.get(i).getLivro().getId() == id) {
 				emprestimosById.add(emprestimos.get(i));
 			}
 		}
@@ -116,15 +125,15 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 	@Override
 	public void update(Emprestimo emprestimo) {
 		List<Emprestimo> emprestimos = this.findAll();
-		for(int i = 0; i < emprestimos.size(); i++) {
-			if(emprestimos.get(i).getId() == emprestimo.getId()) {
+		for (int i = 0; i < emprestimos.size(); i++) {
+			if (emprestimos.get(i).getId() == emprestimo.getId()) {
 				emprestimos.set(i, emprestimo);// Substitui o emprestimo antigo pelo novo na posição 'i'
 				break;
 			}
 		}
 		rewriteFiles(emprestimos);
 	}
-	
+
 	// REESCREVE DADOS NO ARQUIVO
 	private void rewriteFiles(List<Emprestimo> emprestimo) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo))) {

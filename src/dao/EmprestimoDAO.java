@@ -11,6 +11,7 @@ public interface EmprestimoDAO {
 	List<Emprestimo> findAll();
 	void update(Emprestimo emprestimo);
 	List<Emprestimo> findByIdLeitor(int id);
+	List<Emprestimo> findByIdLivro(int id);
 	
 	
 }
