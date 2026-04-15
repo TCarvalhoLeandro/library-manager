@@ -9,7 +9,7 @@ public interface LivroDAO {
 	void insert(Livro livro);
 	Livro find(int id);
 	List<Livro> findAll();
-	void update(Livro livro);
+	void update(int id, Livro livro);
 	void remove(int id);
 	
 }

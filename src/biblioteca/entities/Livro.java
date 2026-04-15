@@ -1,40 +1,34 @@
 package biblioteca.entities;
 
-import biblioteca.service.Salvar;
-
-public class Livro implements Salvar {// implemetando a interface Salvar
+public class Livro {
 
 	private static int contador = 0;
 
-	private int id;// id do livro
-	private String titulo;// nome do livro
-	private String autor;// nome do autor
-	private int ano;// ano de publicação
-	private boolean disponivel;// disponibilidade do livro
+	private int id;
+	private String titulo;
+	private String autor;
+	private int ano;
+	private boolean disponivel;
 
-	// construtor padrao
+	
 	public Livro() {
-		contador++;
+		
 	}
-
-	// construtor com alguns os atributos
 	public Livro(String titulo, String autor, int ano) {
 		this.id = 0;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.ano = ano;
 		this.disponivel = true;
-		contador++;
+		
 	}
-
-	// construtor com todos os atributos
 	public Livro(int id, String titulo, String autor, int ano, boolean disponivel) {
 		this.id = id;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.ano = ano;
 		this.disponivel = disponivel;
-		contador++;
+		
 	}
 
 	public int getId() {
@@ -85,14 +79,21 @@ public class Livro implements Salvar {// implemetando a interface Salvar
 		contador = cont;
 	}
 
-	/* SALVAR EM .CSV */
-	@Override
+	// salvar em csv
 	public String toCSV() {
-		return id + ";" + titulo + ";" + autor + ";" + ano + ";" + disponivel;
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(id).append(";")
+		.append(titulo).append(";")
+		.append(autor).append(";")
+		.append(ano).append(";")
+		.append(disponivel);
+		
+		return sb.toString();
 	}
 
 	@Override
 	public String toString() {
-		return id + " - " + titulo + " - " + autor + " - " + ano + " - " + disponivel;
+		return id + " - " + titulo + " - " + autor + " - " + ano;
 	}
 }

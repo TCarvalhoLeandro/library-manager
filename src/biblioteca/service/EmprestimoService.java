@@ -61,7 +61,7 @@ public class EmprestimoService {
 		// seta o campo 'disponivel' do Livro
 		livro.setDisponivel(false);
 		// atualiza o arquivo Livro
-		livroDao.update(livro);
+		livroDao.update(idLivro, livro);
 
 	}
 
@@ -85,7 +85,7 @@ public class EmprestimoService {
 		livro.setDisponivel(true);
 		
 		// atualiza o arquivo do Livro
-		livroDao.update(livro);
+		livroDao.update(livro_id, livro);
 		// atualiza o arquivo do Emprestimo
 		emprestimoDao.update(emprestimo);
 	}

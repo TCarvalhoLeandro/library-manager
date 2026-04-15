@@ -28,7 +28,7 @@ public class Program {
 		EmprestimoDAO emprestimoDao = new EmprestimoCSVDAO("emprestimos.csv");
 
 		// instanciar os services, injetando os DAOs
-		LivroService livroService = new LivroService(livroDao, emprestimoDao);
+		LivroService livroService = new LivroService(livroDao);
 		LeitorService leitorService = new LeitorService(leitorDao, emprestimoDao);
 		EmprestimoService emprestimoService = new EmprestimoService(emprestimoDao, leitorDao, livroDao);
 

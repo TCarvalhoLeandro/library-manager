@@ -49,9 +49,15 @@ public class LivroCSVDAO implements LivroDAO {
 	public List<Livro> findAll() {
 		List<Livro> livros = new ArrayList<Livro>();// o arquivo pode ter varios livros entao criamos uma lista
 		try (BufferedReader br = new BufferedReader(new FileReader(this.caminhoArquivo))) {
+			
 			String line;
 			while ((line = br.readLine()) != null) {
+				// garante salvar livro se o arquivo estiver vazio
+				if(line.trim().isEmpty()) {
+					continue;
+				}
 				String[] fields = line.split(";");
+				
 				int id = Integer.parseInt(fields[0]);
 				String nome = fields[1];
 				String autor = fields[2];
@@ -69,12 +75,13 @@ public class LivroCSVDAO implements LivroDAO {
 
 	// ATUALIZA LIVRO 
 	@Override
-	public void update(Livro livro) {
+	public void update(int id, Livro livro) {
 		List<Livro> livros = this.findAll(); // carrega todos os livros
 		for (int i = 0; i < livros.size(); i++) {
-			if (livros.get(i).getId() == livro.getId()) {
+			if (livros.get(i).getId() == id) {
+				livro.setId(id);// transfere o ID correto para o objeto novo
 				livros.set(i, livro); // Substitui o livro antigo pelo novo na posição 'i'
-				break; // Já atualizamos, podemos parar de procurar!
+				break;// para de procurar
 			}
 		}
 		rewriteFiles(livros);
