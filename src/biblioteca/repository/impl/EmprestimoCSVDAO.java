@@ -21,7 +21,7 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		this.caminhoArquivo = caminhoArquivo;
 	}
 
-	// INSERE EMPRESTIMO
+	// insere Emprestimo
 	@Override
 	public void insert(Emprestimo emprestimo) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
@@ -32,7 +32,7 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		}
 	}
 
-	// BUSCA POR ID
+	// busca por id
 	@Override
 	public Emprestimo findById(int id) {
 		List<Emprestimo> emprestimos = this.findAll(); // carrega todos os emprestimos
@@ -44,21 +44,19 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		throw new DadosException("Emprestimo não encontrado.");
 	}
 
-	// BUSCA TODOS EMPRESTIMOS NO ARQUIVO E CONVERTE EM OBJETO EMPRESTIMO
+	// busca todos os emprestimos no arquivo
 	@Override
 	public List<Emprestimo> findAll() {
-		List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();// o arquivo pode ter varios livros entao criamos uma
-																	// lista
+		List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
 		try (BufferedReader br = new BufferedReader(new FileReader(this.caminhoArquivo))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				
+				// se o arquivo estiver vazio ignora e continua
 				if(line.trim().isEmpty()) {
 					continue;
 				}
-				
-				// O -1 obriga o Java a ler as colunas vazias!
-				String[] fields = line.split(";", -1);
+			
+				String[] fields = line.split(";", -1);// obriga o Java a ler as colunas vazias
 
 				int id = Integer.parseInt(fields[0]);
 				int leitorId = Integer.parseInt(fields[1]);
@@ -84,7 +82,7 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		return emprestimos;
 	}
 
-	// FILTRA EMPRESTIMOS POR ID DO LEITOR
+	//busca Emprestimo por ID Leitor
 	public List<Emprestimo> findByIdLeitor(int id) {
 		List<Emprestimo> emprestimos = findAll();
 		List<Emprestimo> emprestimosById = new ArrayList<Emprestimo>();
@@ -96,7 +94,7 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		return emprestimosById;
 	}
 
-	// FILTRA EMPRESTIMOS POR ID DO LIVRO
+	// busca emprestimo por ID Livro
 	public List<Emprestimo> findByIdLivro(int id) {
 		List<Emprestimo> emprestimos = findAll();
 		List<Emprestimo> emprestimosById = new ArrayList<Emprestimo>();
@@ -108,7 +106,7 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		return emprestimosById;
 	}
 
-	// ATUALIZA EMPRESTIMO
+	// atualiza emprestimo
 	@Override
 	public void update(Emprestimo emprestimo) {
 		List<Emprestimo> emprestimos = this.findAll();
@@ -121,7 +119,7 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		rewriteFiles(emprestimos);
 	}
 
-	// REESCREVE DADOS NO ARQUIVO
+	// reescreve dados 
 	private void rewriteFiles(List<Emprestimo> emprestimo) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo))) {
 			for (Emprestimo emprestimos : emprestimo) {

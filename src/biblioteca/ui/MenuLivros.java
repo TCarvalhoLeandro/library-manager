@@ -46,13 +46,18 @@ public class MenuLivros {
 				int idLivro = sc.nextInt();
 				try {
 					Livro livro = livroResource.findById(idLivro);
+					System.out.println();
+					System.out.println("--------- Livro ---------");
 					System.out.println(livro);
+					System.out.println();
 				} catch (RuntimeException e) {
 					System.out.println("Atenção: " + e.getMessage());
 				}
 				break;
 			case 3:
 				try {
+					System.out.println();
+					System.out.println("--------- Livros ---------");
 					List<Livro> livros = livroResource.findAll();
 					System.out.println();
 					for(Livro obj: livros) {
@@ -74,7 +79,9 @@ public class MenuLivros {
 				Livro updateLivro = telaCadastro();
 				// chama o metodo para atualizar
 				livroResource.update(idLivro, updateLivro);
+				System.out.println();
 				System.out.println("Livro atualizado com sucesso!");
+				System.out.println();
 				break;
 			case 5:
 				System.out.print("Digite o ID do Livro: ");
@@ -82,7 +89,9 @@ public class MenuLivros {
 
 				try {
 					livroResource.delete(idLivro);
+					System.out.println();
 					System.out.println("Livro excluído com sucesso!");
+					System.out.println();
 				} catch (RuntimeException e) {
 					System.out.println("Atenção: " + e.getMessage());
 				}
