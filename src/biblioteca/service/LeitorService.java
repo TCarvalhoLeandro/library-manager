@@ -4,15 +4,21 @@ import java.util.List;
 
 import biblioteca.entities.Emprestimo;
 import biblioteca.entities.Leitor;
-import dao.EmprestimoDAO;
-import dao.LeitorDAO;
+import biblioteca.repository.EmprestimoDAO;
+import biblioteca.repository.LeitorDAO;
 
 public class LeitorService {
 
 	private LeitorDAO leitorDao;
 	private EmprestimoDAO emprestimoDao;
+	
+	// injecao de dependencia
+	public LeitorService(LeitorDAO leitorDao, EmprestimoDAO emprestimoDao) {
+		this.leitorDao = leitorDao;
+		this.emprestimoDao = emprestimoDao;
+	}
 
-	public int salvarLeitor(Leitor novoLeitor) {
+	public int insert(Leitor novoLeitor) {
 		List<Leitor> leitores = leitorDao.findAll();
 		// validacao de regra de negocio, verifica se o cpf já existe
 		for (Leitor leitor : leitores) {
@@ -32,7 +38,7 @@ public class LeitorService {
 		return novoLeitor.getId();
 	}
 
-	public void deletarLeitor(int idLeitor) {
+	public void delete(int idLeitor) {
 		// verifica se tem emprestimo penedente
 		List<Emprestimo> historicoEmprestimo = emprestimoDao.findByIdLeitor(idLeitor);
 		for (Emprestimo emprestimo : historicoEmprestimo) {

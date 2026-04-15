@@ -1,4 +1,4 @@
-package dao.impl;
+package biblioteca.repository.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,14 +10,13 @@ import java.util.List;
 
 import biblioteca.domainException.DadosException;
 import biblioteca.entities.Leitor;
-import dao.LeitorDAO;
+import biblioteca.repository.LeitorDAO;
 
 public class LeitorCSVDAO implements LeitorDAO {
 
 	private String caminhoArquivo;
 
 	public LeitorCSVDAO(String caminhoArquivo) {
-		super();
 		this.caminhoArquivo = caminhoArquivo;
 	}
 

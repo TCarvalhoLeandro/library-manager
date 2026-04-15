@@ -1,4 +1,4 @@
-package dao;
+package biblioteca.repository;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ public interface EmprestimoDAO {
 	void update(Emprestimo emprestimo);
 	List<Emprestimo> findByIdLeitor(int id);
 	List<Emprestimo> findByIdLivro(int id);
+
 	
 	
 }

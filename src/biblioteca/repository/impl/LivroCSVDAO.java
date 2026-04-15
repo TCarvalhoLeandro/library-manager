@@ -1,4 +1,4 @@
-package dao.impl;
+package biblioteca.repository.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import biblioteca.domainException.DadosException;
 import biblioteca.entities.Livro;
-import dao.LivroDAO;
+import biblioteca.repository.LivroDAO;
 
 public class LivroCSVDAO implements LivroDAO {
 

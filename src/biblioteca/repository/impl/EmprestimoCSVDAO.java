@@ -1,4 +1,4 @@
-package dao.impl;
+package biblioteca.repository.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,22 +11,14 @@ import java.util.List;
 
 import biblioteca.domainException.DadosException;
 import biblioteca.entities.Emprestimo;
-import biblioteca.entities.Leitor;
-import biblioteca.entities.Livro;
-import dao.EmprestimoDAO;
-import dao.LeitorDAO;
-import dao.LivroDAO;
+import biblioteca.repository.EmprestimoDAO;
 
 public class EmprestimoCSVDAO implements EmprestimoDAO {
 
 	private String caminhoArquivo;
-	private LeitorDAO leitorDao;
-	private LivroDAO livroDao;
 
-	public EmprestimoCSVDAO(String caminhoArquivo, LeitorDAO leitorDao, LivroDAO livroDao) {
+	public EmprestimoCSVDAO(String caminhoArquivo) {
 		this.caminhoArquivo = caminhoArquivo;
-		this.leitorDao = leitorDao;
-		this.livroDao = livroDao;
 	}
 
 	// INSERE EMPRESTIMO
@@ -60,33 +52,28 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 		try (BufferedReader br = new BufferedReader(new FileReader(this.caminhoArquivo))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-
-				String[] fields = line.split(";");
+				
+				if(line.trim().isEmpty()) {
+					continue;
+				}
+				
+				// O -1 obriga o Java a ler as colunas vazias!
+				String[] fields = line.split(";", -1);
 
 				int id = Integer.parseInt(fields[0]);
-
 				int leitorId = Integer.parseInt(fields[1]);
-
 				int livroId = Integer.parseInt(fields[2]);
-
-				LocalDate dataEmprestimo = LocalDate.parse(fields[3]);
-
+				boolean status = Boolean.parseBoolean(fields[3]);
+				LocalDate dataEmprestimo = LocalDate.parse(fields[4]);
 				LocalDate dataDevolucao;
-				if (!fields[4].isEmpty()) {
-					dataDevolucao = LocalDate.parse(fields[4]);
+				if (!fields[5].trim().isEmpty()) {
+					dataDevolucao = LocalDate.parse(fields[5]);
 				} else {
 					dataDevolucao = null;
 				}
-
-				boolean status = Boolean.parseBoolean(fields[5]);
-
-				// instancia leitor e livro a partir do id
 				try {
-					Leitor leitor = leitorDao.find(leitorId);
-
-					Livro livro = livroDao.find(livroId);
-
-					emprestimos.add(new Emprestimo(id, leitor, livro, dataEmprestimo, dataDevolucao, status));
+					// adiciona na lista
+					emprestimos.add(new Emprestimo(id, leitorId, livroId, status, dataEmprestimo, dataDevolucao ));
 				} catch (Exception e) {
 					throw new DadosException("Erro ao processar linha de empréstimo!");
 				}
@@ -101,21 +88,21 @@ public class EmprestimoCSVDAO implements EmprestimoDAO {
 	public List<Emprestimo> findByIdLeitor(int id) {
 		List<Emprestimo> emprestimos = findAll();
 		List<Emprestimo> emprestimosById = new ArrayList<Emprestimo>();
-		for (int i = 0; i < emprestimos.size(); i++) {
-			if (emprestimos.get(i).getLeitor().getId() == id) {
-				emprestimosById.add(emprestimos.get(i));
+		for(Emprestimo obj: emprestimos) {
+			if(obj.getLeitor_id() == id) {
+				emprestimosById.add(obj);
 			}
 		}
 		return emprestimosById;
 	}
 
-	// FILTRA EMPRESTIMOS POR ID DO LEITOR
+	// FILTRA EMPRESTIMOS POR ID DO LIVRO
 	public List<Emprestimo> findByIdLivro(int id) {
 		List<Emprestimo> emprestimos = findAll();
 		List<Emprestimo> emprestimosById = new ArrayList<Emprestimo>();
-		for (int i = 0; i < emprestimos.size(); i++) {
-			if (emprestimos.get(i).getLivro().getId() == id) {
-				emprestimosById.add(emprestimos.get(i));
+		for(Emprestimo obj: emprestimos) {
+			if(obj.getLivro_id() == id) {
+				emprestimosById.add(obj);
 			}
 		}
 		return emprestimosById;

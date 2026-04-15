@@ -4,15 +4,22 @@ import java.util.List;
 
 import biblioteca.entities.Emprestimo;
 import biblioteca.entities.Livro;
-import dao.EmprestimoDAO;
-import dao.LivroDAO;
+import biblioteca.repository.EmprestimoDAO;
+import biblioteca.repository.LivroDAO;
 
 public class LivroService {
 
 	private LivroDAO livroDao;
 	private EmprestimoDAO emprestimoDao;
+	
+	// injecao de dependencia
+	public LivroService(LivroDAO livroDao, EmprestimoDAO emprestimoDao) {
+		this.livroDao = livroDao;
+		this.emprestimoDao = emprestimoDao;
+	}
 
-	public int salvaLivro(Livro novoLivro) {
+
+	public int insert(Livro novoLivro) {
 		List<Livro> livros = livroDao.findAll();
 		for (Livro livro : livros) {
 			if (livro.getTitulo().equals(novoLivro.getTitulo())) {
@@ -31,7 +38,7 @@ public class LivroService {
 	}
 
 	
-	public void deletarLivro(int idLivro) {
+	public void delete(int idLivro) {
 		// verifica se tem emprestimo penedente
 		List<Emprestimo> historicoEmprestimo = emprestimoDao.findByIdLivro(idLivro);
 		for (Emprestimo emprestimo : historicoEmprestimo) {

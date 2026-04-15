@@ -1,4 +1,4 @@
-package dao;
+package biblioteca.repository;
 
 import java.util.List;
 

@@ -2,42 +2,35 @@ package biblioteca.entities;
 
 import java.time.LocalDate;
 
-import biblioteca.service.Salvar;
+public class Emprestimo{
 
-public class Emprestimo implements Salvar{// implementando a interface Salvar
-	
-	private static int contador = 1;
-	
-	private int id;// id do emprestimo
-	private Leitor leitor;
-	private Livro livro;
+	private int id;
+	private int leitor_id;
+	private int livro_id;
+	private boolean devolvido;
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
-	private boolean devolvido;
-	
-	//construtor padrão
+
 	public Emprestimo() {
-		contador++;
+		
 	}
-	public Emprestimo(int id, Leitor leitor, Livro livro, LocalDate dataEmprestimo,
-			boolean devolvido) {
-		this.id = id;
-		this.leitor = leitor;
-		this.livro = livro;
-		this.dataEmprestimo = dataEmprestimo;
+	
+	public Emprestimo(int leitor_id, int livro_id, boolean devolvido, LocalDate dataEmprestimo) {
+		this.leitor_id = leitor_id;
+		this.livro_id = livro_id;
 		this.devolvido = devolvido;
-		contador++;
+		this.dataEmprestimo = dataEmprestimo;
+		
 	}
 
-	public Emprestimo(int id, Leitor leitor, Livro livro, LocalDate dataEmprestimo, LocalDate dataDevolucao,
-			boolean devolvido) {
+	public Emprestimo(int id, int leitor_id, int livro_id, boolean devolvido, LocalDate dataEmprestimo,
+			LocalDate dataDevolucao) {
 		this.id = id;
-		this.leitor = leitor;
-		this.livro = livro;
+		this.leitor_id = leitor_id;
+		this.livro_id = livro_id;
+		this.devolvido = devolvido;
 		this.dataEmprestimo = dataEmprestimo;
 		this.dataDevolucao = dataDevolucao;
-		this.devolvido = devolvido;
-		contador++;
 	}
 
 	public int getId() {
@@ -48,20 +41,20 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 		this.id = id;
 	}
 
-	public Leitor getLeitor() {
-		return leitor;
+	public int getLeitor_id() {
+		return leitor_id;
 	}
 
-	public void setLeitor(Leitor leitor) {
-		this.leitor = leitor;
+	public void setLeitor_id(int leitor_id) {
+		this.leitor_id = leitor_id;
 	}
 
-	public Livro getLivro() {
-		return livro;
+	public int getLivro_id() {
+		return livro_id;
 	}
 
-	public void setLivro(Livro livro) {
-		this.livro = livro;
+	public void setLivro_id(int livro_id) {
+		this.livro_id = livro_id;
 	}
 
 	public LocalDate getDataEmprestimo() {
@@ -88,54 +81,18 @@ public class Emprestimo implements Salvar{// implementando a interface Salvar
 		this.devolvido = devolvido;
 	}
 	
-	public void registrarDevolucao() {
-		this.dataDevolucao = LocalDate.now();
-	}
-	
-	public static int getContador() {
-		return contador;
-	}
-	public static void setContador(int cont) {
-		contador = cont;
-	}
-	
-	
-	public long diasAtrasados() {
-		return 1;
-	}
-	
-	/*METODO INTERFACE PRA SALVAR EM .CSV*/
-	@Override
 	public String toCSV() {
-		/*dataDevolucao diferente de null?
-		 * SIM: dataDev = dataDevolucao.toString()
-		 * NAO: dataDev = " "*/
-		String dataDev = (dataDevolucao != null) ? dataDevolucao.toString() : "";
-		return id + ";" 
-				  + leitor.getId() 
-				  + ";" 
-				  + livro.getId() 
-				  + ";" 
-				  + dataEmprestimo 
-				  + ";" 
-				  + dataDev 
-				  + ";" 
-				  + devolvido;
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(id).append(";")
+		.append(leitor_id).append(";")
+		.append(livro_id).append(";")
+		.append(devolvido).append(";")
+		.append(dataEmprestimo).append(";");
+		if(dataDevolucao != null)
+			sb.append(dataDevolucao);
+		
+		return sb.toString();
 	}
-	
-	/*=================================>> MELHORAR ESSA PARTE*/
-	public String toStringEmprestimo() {
-		return id + " - " + leitor.getNome() + " - " + livro.getTitulo() + " - " + dataEmprestimo ;
-	}
-	
-	public String toStringDevolucao() {
-		return id + " - " + leitor.getNome() + " - " + livro.getTitulo() + " - " + dataEmprestimo + " - " + dataDevolucao;
-	}
-	
-	@Override
-	public String toString() {
-		return id + " - " + leitor.getNome() + " - " + livro.getTitulo() + " - " + dataEmprestimo + " - " + dataDevolucao;
-	}
-	
-	
 }
