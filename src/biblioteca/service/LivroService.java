@@ -16,7 +16,8 @@ public class LivroService {
 		this.livroDao = livroDao;
 		
 	}
-
+	
+	// insere Livro
 	public void insert(Livro novoLivro) {
 		List<Livro> livros = new ArrayList<Livro>();
 		livros = livroDao.findAll();
@@ -34,12 +35,13 @@ public class LivroService {
 		}
 		livroDao.insert(novoLivro);
 	}
-
 	
+	// busca por ID
 	public Livro findById(int livro_id) {
 		return livroDao.find(livro_id);
 	}
 	
+	// busca todos livros retorna lista de Livro
 	public List<Livro> findAll(){
 		List<Livro> livros = livroDao.findAll();
 		if(livros.isEmpty()) {
@@ -48,12 +50,12 @@ public class LivroService {
 		return livros;
 	}
 	
-	
+	// atualiza Livro	
 	public void update(int id, Livro livro) {
 		livroDao.update(id, livro);
 	}
 	
-	
+	// remove Livro
 	public void delete(int idLivro) {
 		//busca apenas o livro que queremos apagar
 		//Se o ID não existir, o DAO já vai lançar exceção

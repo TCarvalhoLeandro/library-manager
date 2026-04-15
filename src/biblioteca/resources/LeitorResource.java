@@ -1,5 +1,6 @@
 package biblioteca.resources;
 
+import java.util.List;
 import java.util.Scanner;
 
 import biblioteca.entities.Leitor;
@@ -19,6 +20,18 @@ public class LeitorResource {
 
 	public void insert(Leitor entity) {
 		leitorService.insert(entity);
+	}
+	
+	public Leitor findById(int leitor_id) {
+		return leitorService.findById(leitor_id);
+	}
+	
+	public List<Leitor> findAll(){
+		return leitorService.findAll();
+	}
+	
+	public void update(int leitor_id, Leitor leitor) {
+		leitorService.update(leitor_id, leitor);
 	}
 	
 	public void delete(int id) {

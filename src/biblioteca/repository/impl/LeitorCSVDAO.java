@@ -51,6 +51,9 @@ public class LeitorCSVDAO implements LeitorDAO {
 		try (BufferedReader br = new BufferedReader(new FileReader(this.caminhoArquivo))) {
 			String line;
 			while ((line = br.readLine()) != null) {
+				if(line.trim().isEmpty()) {
+					continue;
+				}
 				String[] fields = line.split(";");
 				int id = Integer.parseInt(fields[0]);
 				String nome = fields[1];
@@ -68,10 +71,11 @@ public class LeitorCSVDAO implements LeitorDAO {
 
 	// ATUALIZA LEITOR
 	@Override
-	public void update(Leitor leitor) {
+	public void update(int leitor_id, Leitor leitor) {
 		List<Leitor> leitores = this.findAll(); // carrega todos os livros
 		for (int i = 0; i < leitores.size(); i++) {
-			if (leitores.get(i).getId() == leitor.getId()) {
+			if (leitores.get(i).getId() == leitor_id) {
+				leitor.setId(leitor_id);
 				leitores.set(i, leitor); // Substitui o livro antigo pelo novo na posição 'i'
 				break; // Já atualizamos, podemos parar de procurar!
 			}

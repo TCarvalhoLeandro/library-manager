@@ -1,36 +1,26 @@
 package biblioteca.entities;
 
-import biblioteca.service.Salvar;
-
-public class Leitor implements Salvar{// implemetando a interface Salvar
+public class Leitor{
 	
-	private static int contador = 0;
+	private int id;
+	private String nome;
+	private String cpf;
+	private String email;
 	
-	private int id;//id do leitor
-	private String nome;// nome do leitor
-	private String cpf;//cpf do leitor
-	private String email;//email do leitor
-	
-	//construtor padrão
 	public Leitor() {
-		contador++;
 	}
-
 	
 	public Leitor(String nome, String cpf, String email) {
-		this.id = 0;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
-		contador++;
 	}
 	
 	public Leitor(int id, String nome, String cpf, String email) {
-		this.id = 0;
+		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
-		contador++;
 	}
 
 	public int getId() {
@@ -65,22 +55,14 @@ public class Leitor implements Salvar{// implemetando a interface Salvar
 		this.email = email;
 	}
 	
-	public static int getContador() {
-		return contador;
-	}
-	public static void setContador(int cont) {
-		contador = cont;
-	}
-	
-	/*METODO INTERFACE PRA SALVAR EM .CSV*/
-	@Override
 	public String toCSV() {
-		return id + ";" 
-				  + nome 
-				  + ";" 
-				  + cpf 
-				  + ";" 
-				  + email;
+		StringBuilder sb = new StringBuilder();
+		sb.append(id).append(";")
+		.append(nome).append(";")
+		.append(cpf).append(";")
+		.append(email);
+		
+		return sb.toString();
 	}
 	
 	@Override

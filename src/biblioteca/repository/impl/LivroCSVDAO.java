@@ -20,7 +20,7 @@ public class LivroCSVDAO implements LivroDAO {
 		this.caminhoArquivo = caminhoArquivo;
 	}
 
-	// INSERE LIVRO
+	// insere Livro
 	@Override
 	public void insert(Livro livro) {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
@@ -32,7 +32,7 @@ public class LivroCSVDAO implements LivroDAO {
 		}
 	}
 
-	// BUSCA POR ID
+	// busca por ID
 	@Override
 	public Livro find(int id) {
 		List<Livro> livros = this.findAll(); // carrega todos os livros
@@ -44,7 +44,7 @@ public class LivroCSVDAO implements LivroDAO {
 		throw new DadosException("Livro não encontrado.");
 	}
 
-	//BUSCA TODOS LIVROS NO ARQUIVO E CONVERTE EM OBJETO LIVRO
+	// busca todos livros retorna lista Livro
 	@Override
 	public List<Livro> findAll() {
 		List<Livro> livros = new ArrayList<Livro>();// o arquivo pode ter varios livros entao criamos uma lista
@@ -73,13 +73,13 @@ public class LivroCSVDAO implements LivroDAO {
 		return livros;
 	}
 
-	// ATUALIZA LIVRO 
+	// atualiza Livro
 	@Override
-	public void update(int id, Livro livro) {
+	public void update(int livro_id, Livro livro) {
 		List<Livro> livros = this.findAll(); // carrega todos os livros
 		for (int i = 0; i < livros.size(); i++) {
-			if (livros.get(i).getId() == id) {
-				livro.setId(id);// transfere o ID correto para o objeto novo
+			if (livros.get(i).getId() == livro_id) {
+				livro.setId(livro_id);// transfere o ID correto para o objeto novo
 				livros.set(i, livro); // Substitui o livro antigo pelo novo na posição 'i'
 				break;// para de procurar
 			}
@@ -87,7 +87,7 @@ public class LivroCSVDAO implements LivroDAO {
 		rewriteFiles(livros);
 	}
 
-	// REMOVE LIVRO
+	// remove Livro
 	@Override
 	public void remove(int id) {
 		List<Livro> livros = this.findAll(); // carrega todos os livros

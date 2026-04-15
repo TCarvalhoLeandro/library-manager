@@ -9,7 +9,7 @@ public interface LeitorDAO {
 	void insert(Leitor leitor);
 	Leitor find(int id);
 	List<Leitor> findAll();
-	void update(Leitor leitor);
+	void update(int leitor_id, Leitor leitor);
 	void remove(int id);
 	
 }
