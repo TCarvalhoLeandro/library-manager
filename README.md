@@ -53,4 +53,5 @@ Como se trata de uma aplicação baseada em terminal (Console), não há hospeda
 👨‍💻 Autor
 Leandro Carvalho
 
-<a href="https://www.linkedin.com/in/leandrocarvalho1979" target="_blank">LinkedIn</a>
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leandrocarvalho1979)
