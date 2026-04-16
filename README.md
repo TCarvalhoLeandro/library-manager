@@ -22,7 +22,7 @@ Neste projeto, o foco foi a construção de uma base arquitetural forte usando a
 * **Padrões de Projeto & Arquitetura:**
   * **MVC / Camadas:** Separação estrita entre Apresentação (`View/Menu`), Lógica de Negócio (`Service`) e Acesso a Dados (`Repository/DAO`).
   * **Repository Pattern:** Abstração das coleções de dados, facilitando a troca da tecnologia de persistência.
-  * **Injeção de Dependência:** Acoplamento frouxo das classes orquestrado via construtores na classe `Main`.
+  * **Injeção de Dependência:** Baixo acoplamento das classes orquestrado via construtores na classe `Main`.
   * **Fail-Fast:** Tratamento preventivo de erros e regras de negócio.
 * **Ferramentas:** Git e Eclipse / Spring Tool Suite (STS)
 * **Ambiente:** Desenvolvido e testado em ambiente Linux (Ubuntu)
@@ -42,7 +42,7 @@ Como se trata de uma aplicação baseada em terminal (Console), não há hospeda
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/TCarvalhoLeandro/library-manager.git](https://github.com/TCarvalhoLeandro/library-manager.git)
+   git clone https://github.com/TCarvalhoLeandro/library-manager.git
    
 2. Abra na sua IDE: Importe o projeto no Eclipse, IntelliJ ou VS Code.
 
@@ -53,4 +53,4 @@ Como se trata de uma aplicação baseada em terminal (Console), não há hospeda
 👨‍💻 Autor
 Leandro Carvalho
 
-[Linkedin](www.linkedin.com/in/leandrocarvalho1979)
+<a href="https://www.linkedin.com/in/leandrocarvalho1979" target="_blank">LinkedIn</a>

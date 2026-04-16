@@ -1,4 +1,4 @@
-package biblioteca.program;
+package biblioteca.main;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ import biblioteca.ui.MenuEmprestimo;
 import biblioteca.ui.MenuLeitor;
 import biblioteca.ui.MenuLivros;
 
-public class Program {
+public class Main {
 
 	public static void main(String[] args) {
 
