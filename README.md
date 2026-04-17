@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/Database-CSV_Files-success?style=for-the-badge" alt="CSV">
   <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu">
   <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git">
-<img src="https://img.shields.io/badge/Pattern-Repository-green?style=for-the-badge" alt="Repository Pattern">
+  <img src="https://img.shields.io/badge/Pattern-Repository-green?style=for-the-badge" alt="Repository Pattern">
   <img src="https://img.shields.io/badge/Architecture-MVC-purple?style=for-the-badge" alt="MVC">
 </p>
 
@@ -26,7 +26,7 @@ Neste projeto, o foco foi a construção de uma base arquitetural forte usando a
 
 ---
 
-## 🏗️ Arquitetura e Padrões de Projeto
+## 📐 Arquitetura e Padrões de Projeto
 
  * **MVC / Camadas:** Separação estrita entre Apresentação (`View/Menu`), Lógica de Negócio (`Service`) e Acesso a Dados (`Repository/DAO`).
   * **Repository Pattern:** Abstração das coleções de dados, facilitando a troca da tecnologia de persistência.
@@ -89,8 +89,13 @@ Nesta fase do projeto, implementei uma refatoração estrutural profunda, migran
 
 ## 💻 Resultado
 
-<img src="images/Captura de tela de 2026-04-17 12-55-08.png"
-" width="500">
+<p align="center">
+  <img src="images/Captura de tela de 2026-04-17 12-55-08.png"
+  width="450" alt="">
+   &nbsp;&nbsp;&nbsp;
+  <img src="images/Captura de tela de 2026-04-17 12-55-21.png"
+  width="450" alt="">
+</p>
 
 ---
 
