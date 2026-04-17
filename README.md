@@ -89,7 +89,7 @@ Nesta fase do projeto, implementei uma refatoração estrutural profunda, migran
 
 ## 💻 Resultado
 
-<img src="Biblioteca/images/Captura de tela de 2026-04-17 12-55-08.png"
+<img src="images/Captura de tela de 2026-04-17 12-55-08.png"
 " width="500">
 
 ---
