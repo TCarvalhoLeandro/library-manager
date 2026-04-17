@@ -91,10 +91,10 @@ Nesta fase do projeto, implementei uma refatoração estrutural profunda, migran
 
 <p align="center">
   <img src="images/Captura de tela de 2026-04-17 12-55-08.png"
-  width="450" alt="">
-   &nbsp;&nbsp;&nbsp;
+  width="400" alt="">
+   &nbsp;&nbsp;
   <img src="images/Captura de tela de 2026-04-17 12-55-21.png"
-  width="450" alt="">
+  width="400" alt="">
 </p>
 
 ---
