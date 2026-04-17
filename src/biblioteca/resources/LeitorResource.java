@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import biblioteca.entities.Leitor;
-import biblioteca.service.LeitorService;
+import biblioteca.services.LeitorService;
 
 public class LeitorResource {
 	

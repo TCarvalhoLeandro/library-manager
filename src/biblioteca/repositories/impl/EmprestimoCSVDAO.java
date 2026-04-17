@@ -1,4 +1,4 @@
-package biblioteca.repository.impl;
+package biblioteca.repositories.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import biblioteca.domainException.DadosException;
 import biblioteca.entities.Emprestimo;
-import biblioteca.repository.EmprestimoDAO;
+import biblioteca.repositories.EmprestimoDAO;
 
 public class EmprestimoCSVDAO implements EmprestimoDAO {
 

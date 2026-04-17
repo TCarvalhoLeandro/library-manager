@@ -1,11 +1,11 @@
-package biblioteca.service;
+package biblioteca.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import biblioteca.domainException.DadosException;
 import biblioteca.entities.Livro;
-import biblioteca.repository.LivroDAO;
+import biblioteca.repositories.LivroDAO;
 
 public class LivroService {
 

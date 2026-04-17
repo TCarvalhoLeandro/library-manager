@@ -1,4 +1,4 @@
-package biblioteca.service;
+package biblioteca.services;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,9 +7,9 @@ import java.util.List;
 import biblioteca.entities.Emprestimo;
 import biblioteca.entities.Leitor;
 import biblioteca.entities.Livro;
-import biblioteca.repository.EmprestimoDAO;
-import biblioteca.repository.LeitorDAO;
-import biblioteca.repository.LivroDAO;
+import biblioteca.repositories.EmprestimoDAO;
+import biblioteca.repositories.LeitorDAO;
+import biblioteca.repositories.LivroDAO;
 
 public class EmprestimoService {
 

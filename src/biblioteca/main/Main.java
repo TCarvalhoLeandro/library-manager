@@ -2,18 +2,18 @@ package biblioteca.main;
 
 import java.util.Scanner;
 
-import biblioteca.repository.EmprestimoDAO;
-import biblioteca.repository.LeitorDAO;
-import biblioteca.repository.LivroDAO;
-import biblioteca.repository.impl.EmprestimoCSVDAO;
-import biblioteca.repository.impl.LeitorCSVDAO;
-import biblioteca.repository.impl.LivroCSVDAO;
+import biblioteca.repositories.EmprestimoDAO;
+import biblioteca.repositories.LeitorDAO;
+import biblioteca.repositories.LivroDAO;
+import biblioteca.repositories.impl.EmprestimoCSVDAO;
+import biblioteca.repositories.impl.LeitorCSVDAO;
+import biblioteca.repositories.impl.LivroCSVDAO;
 import biblioteca.resources.EmprestimoResources;
 import biblioteca.resources.LeitorResource;
 import biblioteca.resources.LivroResource;
-import biblioteca.service.EmprestimoService;
-import biblioteca.service.LeitorService;
-import biblioteca.service.LivroService;
+import biblioteca.services.EmprestimoService;
+import biblioteca.services.LeitorService;
+import biblioteca.services.LivroService;
 import biblioteca.ui.MenuEmprestimo;
 import biblioteca.ui.MenuLeitor;
 import biblioteca.ui.MenuLivros;

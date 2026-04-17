@@ -1,12 +1,12 @@
-package biblioteca.service;
+package biblioteca.services;
 
 import java.util.List;
 
 import biblioteca.domainException.DadosException;
 import biblioteca.entities.Emprestimo;
 import biblioteca.entities.Leitor;
-import biblioteca.repository.EmprestimoDAO;
-import biblioteca.repository.LeitorDAO;
+import biblioteca.repositories.EmprestimoDAO;
+import biblioteca.repositories.LeitorDAO;
 
 public class LeitorService {
 

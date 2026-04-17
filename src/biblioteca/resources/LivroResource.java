@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import biblioteca.entities.Livro;
-import biblioteca.service.LivroService;
+import biblioteca.services.LivroService;
 
 public class LivroResource {
 

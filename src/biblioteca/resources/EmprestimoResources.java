@@ -3,7 +3,7 @@ package biblioteca.resources;
 import java.util.List;
 import java.util.Scanner;
 
-import biblioteca.service.EmprestimoService;
+import biblioteca.services.EmprestimoService;
 
 public class EmprestimoResources {
 

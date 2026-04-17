@@ -1,4 +1,4 @@
-package biblioteca.repository.impl;
+package biblioteca.repositories.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import biblioteca.domainException.DadosException;
 import biblioteca.entities.Leitor;
-import biblioteca.repository.LeitorDAO;
+import biblioteca.repositories.LeitorDAO;
 
 public class LeitorCSVDAO implements LeitorDAO {
 
